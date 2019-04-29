@@ -20,7 +20,7 @@ def draw_images(img, bboxs, landmarks):  # 在图片上绘制人脸框及特征�
             bboxs[i, 2]), int(bboxs[i, 3])), (0, 255, 0), 3)
     for p in landmarks:
         for i in range(5):
-            cv2.circle(img, (int(p[2 * i]), int(p[2 * i + 1])), 6, (0, 0, 255), -1)
+            cv2.circle(img, (int(p[2 * i]), int(p[2 * i + 1])), 2, (0, 0, 255), -1)
     return img
 
 

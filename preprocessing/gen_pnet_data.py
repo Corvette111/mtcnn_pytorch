@@ -171,9 +171,9 @@ def parse_args():
     parser.add_argument('--face_traindata_store', dest='traindata_store', help='face train data temporary folder',
                         default=config.TRAIN_DATA_DIR, type=str)
     parser.add_argument('--anno_file', dest='annotation_file', help='wider face original annotation file',
-                        default=os.path.join(config.ANNO_STORE_DIR, "wider_origin_anno.txt"), type=str)
+                        default=os.path.join(config.ANNO_STORE_DIR, "wider_origin_anno_300.txt"), type=str)
     parser.add_argument('--prefix_path', dest='prefix_path', help='annotation file image prefix root path',
-                        default='/home/dataset/WIDER/WIDER_train/images', type=str)
+                        default='H:/data/face/WIDER_train/images', type=str)
 
     args = parser.parse_args()
     return args

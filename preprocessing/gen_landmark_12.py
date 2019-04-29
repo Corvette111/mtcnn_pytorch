@@ -46,7 +46,7 @@ def gen_data(anno_file, data_dir, prefix):
                   gt_box[3]]  # [left, top, right, bottom]
         gt_box = np.array(gt_box, dtype=np.int32)
 
-        landmark = map(float, annotation[5:])
+        landmark = list(map(float, annotation[5:]))
         landmark = np.array(landmark, dtype=np.float)
 
         img = cv2.imread(im_path)
@@ -74,11 +74,11 @@ def gen_data(anno_file, data_dir, prefix):
                 int(min(w, h) * 0.8), np.ceil(1.25 * max(w, h)))
             delta_x = npr.randint(-w * 0.2, w * 0.2)
             delta_y = npr.randint(-h * 0.2, h * 0.2)
-            nx1 = max(x1 + w / 2 - bbox_size / 2 + delta_x, 0)
-            ny1 = max(y1 + h / 2 - bbox_size / 2 + delta_y, 0)
+            nx1 = int(max(x1 + w / 2 - bbox_size / 2 + delta_x, 0))
+            ny1 = int(max(y1 + h / 2 - bbox_size / 2 + delta_y, 0))
 
-            nx2 = nx1 + bbox_size
-            ny2 = ny1 + bbox_size
+            nx2 = int(nx1 + bbox_size)
+            ny2 = int(ny1 + bbox_size)
             if nx2 > width or ny2 > height:
                 continue
             crop_box = np.array([nx1, ny1, nx2, ny2])
@@ -132,9 +132,9 @@ def parse_args():
     parser.add_argument('--traindata_store', dest='traindata_store', help='dface train data temporary folder',
                         default=config.TRAIN_DATA_DIR, type=str)
     parser.add_argument('--anno_file', dest='annotation_file', help='landmark dataset original annotation file',
-                        default=os.path.join(config.ANNO_STORE_DIR, "landmark_imagelist.txt"), type=str)
+                        default=os.path.join(config.ANNO_STORE_DIR, "landmark_imagelist_300.txt"), type=str)
     parser.add_argument('--prefix_path', dest='prefix_path', help='annotation file image prefix root path',
-                        default='/home/wujiyang/FaceProjects/MTCNN_TRAIN/training_data/landmark_train', type=str)
+                        default='H:/data/face/CNN_FacePoint', type=str)
 
     args = parser.parse_args()
     return args

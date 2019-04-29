@@ -3,6 +3,7 @@ import config
 import preprocessing.assemble as assemble
 
 if __name__ == '__main__':
+    os.chdir("G:/proj/pytorch/mtcnn/mtcnn_pytorch-master")
     anno_list = []
 
     pnet_postive_file = os.path.join(

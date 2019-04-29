@@ -3,7 +3,7 @@ class Config(object):
         super(Config, self).__init__()
         #  ------------ General options ----------------------------------------
         self.save_path = "./results/onet/"
-        self.dataPath = "/home/dataset/WIDER/WIDER_train/images"  # path for loading data set
+        self.dataPath = "./preprocessing"  # path for loading data set
         self.annoPath = "./annotations/imglist_anno_48.txt"
         self.manualSeed = 1  # manually set RNG seed
         self.use_cuda = True
@@ -17,7 +17,7 @@ class Config(object):
         self.batchSize = 512  # mini-batch size 128
 
         # lr master for optimizer 1 (mask vector d)
-        self.lr = 0.001  # initial learning rate
+        self.lr = 0.01  # initial learning rate
         self.step = [10, 25, 40]  # step for linear or exp learning rate policy
         self.decayRate = 0.1  # lr decay rate
         self.endlr = -1

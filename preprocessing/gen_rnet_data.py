@@ -189,13 +189,13 @@ def parse_args():
     parser.add_argument('--face_traindata_store', dest='traindata_store', help='dface train data temporary folder',
                         default=config.TRAIN_DATA_DIR, type=str)
     parser.add_argument('--anno_file', dest='annotation_file', help='wider face original annotation file',
-                        default=os.path.join(config.ANNO_STORE_DIR, "wider_origin_anno.txt"), type=str)
+                        default=os.path.join(config.ANNO_STORE_DIR, "wider_origin_anno_300.txt"), type=str)
     parser.add_argument('--pmodel_file', dest='pnet_model_file', help='PNet model file path',
-                        default='./results/pnet/log_bs512_lr0.010_072402/check_point/model_050.pth', type=str)
+                        default='./training/pnet/results/pnet/log_bs512_lr0.010_072402/check_point/model_050.pth', type=str)
     parser.add_argument('--gpu', dest='use_cuda', help='with gpu',
                         default=config.USE_CUDA, type=bool)
     parser.add_argument('--prefix_path', dest='prefix_path', help='annotation file image prefix root path',
-                        default='/home/dataset/WIDER/WIDER_train/images', type=str)
+                        default='H:/data/face/WIDER_train/images', type=str)
 
     args = parser.parse_args()
     return args
@@ -203,5 +203,6 @@ def parse_args():
 
 if __name__ == '__main__':
     args = parse_args()
+    os.chdir("G:/proj/pytorch/mtcnn/mtcnn_pytorch-master")
     gen_rnet_data(args.traindata_store, args.annotation_file,
                   args.pnet_model_file, args.prefix_path, args.use_cuda)

@@ -134,9 +134,9 @@ def parse_args():
     parser.add_argument('--traindata_store', dest='traindata_store', help='dface train data temporary folder',
                         default=config.TRAIN_DATA_DIR, type=str)
     parser.add_argument('--anno_file', dest='annotation_file', help='landmark dataset original annotation file',
-                        default=os.path.join(config.ANNO_STORE_DIR, "landmark_imagelist.txt"), type=str)
+                        default=os.path.join(config.ANNO_STORE_DIR, "landmark_imagelist_300.txt"), type=str)
     parser.add_argument('--prefix_path', dest='prefix_path', help='annotation file image prefix root path',
-                        default='/home/xiezheng/datasets/Face/FaceAlignment/train', type=str)
+                        default='H:/data/face/CNN_FacePoint', type=str)
 
     args = parser.parse_args()
     return args
@@ -144,6 +144,6 @@ def parse_args():
 
 if __name__ == '__main__':
     args = parse_args()
-
+    os.chdir("G:/proj/pytorch/mtcnn/mtcnn_pytorch-master")
     gen_data(args.annotation_file, args.traindata_store, args.prefix_path)
 
