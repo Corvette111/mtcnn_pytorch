@@ -36,7 +36,7 @@ class MtcnnDetector(object):
             "cuda" if use_cuda and torch.cuda.is_available() else "cpu")
 
         pnet = PNet()
-        #pnet.load_state_dict(torch.load(r'.\training\pnet\results\pnet\log_bs512_lr0.010_072402\check_point\model_050.pth'))
+        #pnet.load_state_dict(torch.load(r'.\results\pnet\log_bs512_lr0.010_072402\check_point\model_050.pth'))
         pnet.load_state_dict(model_zoo.load_url(model_urls['pnet']))
         pnet.to(self.device).eval()
 

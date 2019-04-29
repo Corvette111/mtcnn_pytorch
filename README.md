@@ -52,7 +52,8 @@ python test_image.py
 3. 运行assemble_pnet_imglist.py，它会生成训练图像列表和标签。
 4. 运行training/pnet目录下train.py，开始训练，默认训练50个epoch
 5. 与2-4步相同，完成rnet和onet的训练。
-6. 用自己的模型测试吧。
+6. 看看自己训练的模型的效果。tools/test_detect.py 脚本里有三处load_state_dict 的调用，把它替换成自己训练的模型，参考上面注释掉的那一行写法。
+
 
 有几个需要修改的地方：
 代码根目录下config.py，ROOT_DIR 修改为你自己的代码根目录的绝对路径。
