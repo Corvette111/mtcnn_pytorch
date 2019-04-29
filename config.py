@@ -1,5 +1,6 @@
 import os
 
+ROOT_DIR = "G:/proj/pytorch/mtcnn/mtcnn_pytorch"
 
 MODEL_STORE_DIR = "./models"
 

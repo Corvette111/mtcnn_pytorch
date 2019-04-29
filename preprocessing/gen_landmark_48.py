@@ -144,6 +144,6 @@ def parse_args():
 
 if __name__ == '__main__':
     args = parse_args()
-    os.chdir("G:/proj/pytorch/mtcnn/mtcnn_pytorch-master")
+    os.chdir(config.ROOT_DIR)
     gen_data(args.annotation_file, args.traindata_store, args.prefix_path)
 

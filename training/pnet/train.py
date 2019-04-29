@@ -18,7 +18,8 @@ if __name__ == '__main__':
     config = Config()
     if not os.path.exists(config.save_path):
         os.makedirs(config.save_path)
-    os.chdir("G:/proj/pytorch/mtcnn/mtcnn_pytorch-master")
+    os.chdir("G:/proj/pytorch/mtcnn/mtcnn_pytorch")
+
     # Set device
     os.environ['CUDA_VISIBLE_DEVICES'] = config.GPU
     use_cuda = config.use_cuda and torch.cuda.is_available()

@@ -3,7 +3,7 @@ import config
 import preprocessing.assemble as assemble
 
 if __name__ == '__main__':
-    os.chdir("G:/proj/pytorch/mtcnn/mtcnn_pytorch-master")
+    os.chdir(config.ROOT_DIR)
     anno_list = []
 
     net_landmark_file = os.path.join(config.ANNO_STORE_DIR, config.ONET_LANDMARK_ANNO_FILENAME)

@@ -203,6 +203,6 @@ def parse_args():
 
 if __name__ == '__main__':
     args = parse_args()
-    os.chdir("G:/proj/pytorch/mtcnn/mtcnn_pytorch-master")
+    os.chdir(config.ROOT_DIR)
     gen_rnet_data(args.traindata_store, args.annotation_file,
                   args.pnet_model_file, args.prefix_path, args.use_cuda)

@@ -36,18 +36,18 @@ class MtcnnDetector(object):
             "cuda" if use_cuda and torch.cuda.is_available() else "cpu")
 
         pnet = PNet()
-        pnet.load_state_dict(torch.load(r'.\training\pnet\results\pnet\log_bs512_lr0.010_072402\check_point\model_050.pth'))
-        #pnet.load_state_dict(model_zoo.load_url(model_urls['pnet']))
+        #pnet.load_state_dict(torch.load(r'.\training\pnet\results\pnet\log_bs512_lr0.010_072402\check_point\model_050.pth'))
+        pnet.load_state_dict(model_zoo.load_url(model_urls['pnet']))
         pnet.to(self.device).eval()
 
         onet = ONet()
-        onet.load_state_dict(torch.load(r'.\results\onet\log_bs512_lr0.010_072602\check_point\model_050.pth'))
-        #onet.load_state_dict(model_zoo.load_url(model_urls['onet']))
+        #onet.load_state_dict(torch.load(r'.\results\onet\log_bs512_lr0.010_072602\check_point\model_050.pth'))
+        onet.load_state_dict(model_zoo.load_url(model_urls['onet']))
         onet.to(self.device).eval()
 
         rnet = RNet()
-        rnet.load_state_dict(torch.load(r'.\results\rnet\log_bs512_lr0.001_072502\check_point\model_050.pth'))
-        #rnet.load_state_dict(model_zoo.load_url(model_urls['rnet']))
+        #rnet.load_state_dict(torch.load(r'.\results\rnet\log_bs512_lr0.001_072502\check_point\model_050.pth'))
+        rnet.load_state_dict(model_zoo.load_url(model_urls['rnet']))
         rnet.to(self.device).eval()
 
         return pnet, rnet, onet

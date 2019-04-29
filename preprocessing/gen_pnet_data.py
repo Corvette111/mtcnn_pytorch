@@ -180,5 +180,6 @@ def parse_args():
 
 
 if __name__ == '__main__':
+    os.chdir(config.ROOT_DIR)
     args = parse_args()
     gen_pnet_data(args.traindata_store, args.annotation_file, args.prefix_path)
