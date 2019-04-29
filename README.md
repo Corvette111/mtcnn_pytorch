@@ -45,5 +45,17 @@ cd mtcnn_pytorch/
 python test_image.py
 ```
 
+**四、训练步骤**
+1. 准备好训练数据，包括 wider face 和 TCDCN两个数据集，前者用来训练人脸框，后者用来训练关键点。
+2. 依次训练pnet, rnet, onet.
+先运行preprocessing目录下的gen_pnet_data.py，它会生成许多12x12大小的训练样本图像。
+3. 运行assemble_pnet_imglist.py，它会生成训练图像列表和标签。
+4. 运行training/pnet目录下train.py，开始训练，默认训练50个epoch
+5. 与2-4步相同，完成rnet和onet的训练。
+6. 用自己的模型测试吧。
+
+有几个需要修改的地方：
+代码根目录下config.py，ROOT_DIR 修改为你自己的代码根目录的绝对路径。
+training目录下 pnet,rnet,onet三个目录下分别有train.py，把里面的os.chdir那一行的路径改为你的代码根目录。
 
 -----
