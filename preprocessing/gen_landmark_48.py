@@ -6,7 +6,7 @@ import cv2
 import numpy as np
 import numpy.random as npr
 import argparse
-import config
+import common
 import tools.utils as utils
 
 
@@ -17,11 +17,11 @@ def gen_data(anno_file, data_dir, prefix):
     if not os.path.exists(landmark_imgs_save_dir):
         os.makedirs(landmark_imgs_save_dir)
 
-    anno_dir = config.ANNO_STORE_DIR
+    anno_dir = common.ANNO_STORE_DIR
     if not os.path.exists(anno_dir):
         os.makedirs(anno_dir)
 
-    landmark_anno_filename = config.ONET_LANDMARK_ANNO_FILENAME
+    landmark_anno_filename = common.ONET_LANDMARK_ANNO_FILENAME
     save_landmark_anno = os.path.join(anno_dir, landmark_anno_filename)
 
     f = open(save_landmark_anno, 'w')
@@ -132,11 +132,11 @@ def parse_args():
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('--traindata_store', dest='traindata_store', help='dface train data temporary folder',
-                        default=config.TRAIN_DATA_DIR, type=str)
+                        default=common.TRAIN_DATA_DIR, type=str)
     parser.add_argument('--anno_file', dest='annotation_file', help='landmark dataset original annotation file',
-                        default=os.path.join(config.ANNO_STORE_DIR, "landmark_imagelist_300.txt"), type=str)
+                        default=os.path.join(common.ANNO_STORE_DIR, "landmark_imagelist_300.txt"), type=str)
     parser.add_argument('--prefix_path', dest='prefix_path', help='annotation file image prefix root path',
-                        default='H:/data/face/CNN_FacePoint', type=str)
+                        default=common.WIDER_FACE_DATA, type=str)
 
     args = parser.parse_args()
     return args
@@ -144,6 +144,6 @@ def parse_args():
 
 if __name__ == '__main__':
     args = parse_args()
-    os.chdir(config.ROOT_DIR)
+    os.chdir(common.ROOT_DIR)
     gen_data(args.annotation_file, args.traindata_store, args.prefix_path)
 
