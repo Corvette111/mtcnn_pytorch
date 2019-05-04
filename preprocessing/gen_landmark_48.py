@@ -136,7 +136,7 @@ def parse_args():
     parser.add_argument('--anno_file', dest='annotation_file', help='landmark dataset original annotation file',
                         default=os.path.join(common.ANNO_STORE_DIR, "landmark_imagelist_300.txt"), type=str)
     parser.add_argument('--prefix_path', dest='prefix_path', help='annotation file image prefix root path',
-                        default=common.WIDER_FACE_DATA, type=str)
+                        default=common.FACEPOINT_DATA, type=str)
 
     args = parser.parse_args()
     return args
