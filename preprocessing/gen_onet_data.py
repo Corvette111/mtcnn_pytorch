@@ -9,7 +9,7 @@ import os
 import pickle
 import time
 
-import config
+import common
 import tools.vision as vision
 from tools.train_detect import MtcnnDetector
 from tools.imagedb import ImageDB
@@ -17,12 +17,12 @@ from tools.image_reader import TestImageLoader
 from tools.utils import IoU, convert_to_square
 
 
-def gen_onet_data(data_dir, anno_file, pnet_model_file, rnet_model_file, prefix_path='', use_cuda=True, vis=False):
+def gen_onet_data(data_dir, anno_file, pnet_model_file, rnet_model_file, prefix_path='', use_cuda_=True, vis=False):
     mtcnn_detector = MtcnnDetector(p_model_path=pnet_model_file,
                                    r_model_path=rnet_model_file,
                                    o_model_path=None,
                                    min_face_size=12,
-                                   use_cuda=True)
+                                   use_cuda=use_cuda_)
 
     imagedb = ImageDB(anno_file, mode="test", prefix_path=prefix_path)
     imdb = imagedb.load_imdb()
@@ -51,7 +51,7 @@ def gen_onet_data(data_dir, anno_file, pnet_model_file, rnet_model_file, prefix_
         all_boxes.append(boxes_align)
         batch_idx += 1
 
-    save_path = config.TRAIN_DATA_DIR
+    save_path = common.TRAIN_DATA_DIR
     if not os.path.exists(save_path):
         os.mkdir(save_path)
 
@@ -95,7 +95,7 @@ def get_onet_sample_data(data_dir, anno_file, det_boxs_file, prefix):
         im_idx_list.append(im_idx)
         gt_boxes_list.append(boxes)
 
-    save_path = config.ANNO_STORE_DIR
+    save_path = common.ANNO_STORE_DIR
     if not os.path.exists(save_path):
         os.makedirs(save_path)
 
@@ -187,17 +187,17 @@ def parse_args():
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('--face_traindata_store', dest='traindata_store', help='face train data temporary folder',
-                        default=config.TRAIN_DATA_DIR, type=str)
+                        default=common.TRAIN_DATA_DIR, type=str)
     parser.add_argument('--anno_file', dest='annotation_file', help='wider face original annotation file',
-                        default=os.path.join(config.ANNO_STORE_DIR, "wider_origin_anno_300.txt"), type=str)
+                        default=os.path.join(common.ANNO_STORE_DIR, "wider_origin_anno_300.txt"), type=str)
     parser.add_argument('--pmodel_file', dest='pnet_model_file', help='PNet model file path',
-                        default='./training/pnet/results/pnet/log_bs512_lr0.010_072402/check_point/model_050.pth', type=str)
+                        default='./results/pnet/log_bs512_lr0.010_072402/check_point/model_002.pth', type=str)
     parser.add_argument('--rmodel_file', dest='rnet_model_file', help='RNet model file path',
-                        default='./results/rnet/log_bs512_lr0.001_072502/check_point/model_050.pth', type=str)
+                        default='./results/rnet/log_bs512_lr0.001_072502/check_point/model_002.pth', type=str)
     parser.add_argument('--gpu', dest='use_cuda', help='with gpu',
-                        default=config.USE_CUDA, type=bool)
+                        default=common.USE_CUDA, type=bool)
     parser.add_argument('--prefix_path', dest='prefix_path', help='annotation file image prefix root path',
-                        default='H:/data/face/WIDER_train/images', type=str)
+                        default=common.WIDER_FACE_DATA, type=str)
 
     args = parser.parse_args()
     return args
@@ -205,6 +205,6 @@ def parse_args():
 
 if __name__ == '__main__':
     args = parse_args()
-    os.chdir(config.ROOT_DIR)
+    os.chdir(common.ROOT_DIR)
     gen_onet_data(args.traindata_store, args.annotation_file, args.pnet_model_file, args.rnet_model_file,
                   args.prefix_path, args.use_cuda)

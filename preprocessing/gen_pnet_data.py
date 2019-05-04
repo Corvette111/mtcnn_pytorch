@@ -7,7 +7,7 @@ import numpy as np
 import cv2
 import numpy.random as npr
 from tools.utils import IoU
-import config
+import common
 
 
 def gen_pnet_data(data_dir, anno_file, prefix):
@@ -24,11 +24,11 @@ def gen_pnet_data(data_dir, anno_file, prefix):
 #         os.mkdir(save_dir)
 
     post_save_file = os.path.join(
-        config.ANNO_STORE_DIR, config.PNET_POSTIVE_ANNO_FILENAME)
+        common.ANNO_STORE_DIR, common.PNET_POSTIVE_ANNO_FILENAME)
     neg_save_file = os.path.join(
-        config.ANNO_STORE_DIR, config.PNET_NEGATIVE_ANNO_FILENAME)
+        common.ANNO_STORE_DIR, common.PNET_NEGATIVE_ANNO_FILENAME)
     part_save_file = os.path.join(
-        config.ANNO_STORE_DIR, config.PNET_PART_ANNO_FILENAME)
+        common.ANNO_STORE_DIR, common.PNET_PART_ANNO_FILENAME)
 
     f1 = open(post_save_file, 'w')
     f2 = open(neg_save_file, 'w')
@@ -169,17 +169,17 @@ def parse_args():
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('--face_traindata_store', dest='traindata_store', help='face train data temporary folder',
-                        default=config.TRAIN_DATA_DIR, type=str)
+                        default=common.TRAIN_DATA_DIR, type=str)
     parser.add_argument('--anno_file', dest='annotation_file', help='wider face original annotation file',
-                        default=os.path.join(config.ANNO_STORE_DIR, "wider_origin_anno_300.txt"), type=str)
+                        default=os.path.join(common.ANNO_STORE_DIR, "wider_origin_anno_300.txt"), type=str)
     parser.add_argument('--prefix_path', dest='prefix_path', help='annotation file image prefix root path',
-                        default='H:/data/face/WIDER_train/images', type=str)
+                        default=common.WIDER_FACE_DATA, type=str)
 
     args = parser.parse_args()
     return args
 
 
 if __name__ == '__main__':
-    os.chdir(config.ROOT_DIR)
+    os.chdir(common.ROOT_DIR)
     args = parse_args()
     gen_pnet_data(args.traindata_store, args.annotation_file, args.prefix_path)

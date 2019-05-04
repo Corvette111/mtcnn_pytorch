@@ -8,17 +8,18 @@ from torchvision import transforms
 from models.pnet import PNet
 from training.pnet.trainer import PNetTrainer
 from training.pnet.config import Config
-from tools.logger import Logger
+#from tools.logger import Logger
 from checkpoint import CheckPoint
 import os
 import config
+import common
 
 if __name__ == '__main__':
     # Get config
     config = Config()
     if not os.path.exists(config.save_path):
         os.makedirs(config.save_path)
-    os.chdir("G:/proj/pytorch/mtcnn/mtcnn_pytorch")
+    os.chdir(common.ROOT_DIR)
 
     # Set device
     os.environ['CUDA_VISIBLE_DEVICES'] = config.GPU
@@ -49,8 +50,8 @@ if __name__ == '__main__':
     scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=config.step, gamma=0.1)
 
     # Set trainer
-    logger = Logger(config.save_path)
-    trainer = PNetTrainer(config.lr, train_loader, model, optimizer, scheduler, logger, device)
+    #logger = Logger(config.save_path)
+    trainer = PNetTrainer(config.lr, train_loader, model, optimizer, scheduler, None, device)
 
     for epoch in range(1, config.nEpochs + 1):
         cls_loss_, box_offset_loss, total_loss, accuracy = trainer.train(epoch)

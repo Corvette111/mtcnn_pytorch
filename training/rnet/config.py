@@ -13,7 +13,7 @@ class Config(object):
         self.nThreads = 8  # number of data loader threads
 
         # ---------- Optimization options --------------------------------------
-        self.nEpochs = 50  # number of total epochs to train 400
+        self.nEpochs = 2  # number of total epochs to train 400
         self.batchSize = 512  # mini-batch size 128
 
         # lr master for optimizer 1 (mask vector d)

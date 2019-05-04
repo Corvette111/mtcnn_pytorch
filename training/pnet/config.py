@@ -1,10 +1,11 @@
+import common
 class Config(object):
     def __init__(self):
         super(Config, self).__init__()
         #  ------------ General options ----------------------------------------
         self.save_path = "./results/pnet/"
-        self.dataPath = "G:/proj/pytorch/mtcnn/mtcnn_pytorch-master/preprocessing" #""H:/data/face/CNN_FacePoint"  # path for loading data set
-        self.annoPath = "G:/proj/pytorch/mtcnn/mtcnn_pytorch-master/annotations/imglist_anno_12.txt"
+        self.dataPath = "./preprocessing"   # path for loading data set
+        self.annoPath = "./annotations/imglist_anno_12.txt"
         self.manualSeed = 1  # manually set RNG seed
         self.use_cuda = True
         self.GPU = "0"  # default gpu to use
@@ -13,7 +14,7 @@ class Config(object):
         self.nThreads = 8  # number of data loader threads
 
         # ---------- Optimization options --------------------------------------
-        self.nEpochs = 50  # number of total epochs to train 400
+        self.nEpochs = 2  # number of total epochs to train 400
         self.batchSize = 512  # mini-batch size 128
 
         # lr master for optimizer 1 (mask vector d)
